@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTextEdit{
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+      <item>
+       <widget class="QTextEdit" name="md_text">
+        <property name="maximumSize">
+         <size>
+          <width>782</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTextEdit{
+	padding:10px;
+	font-size:16px;
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="web_widget" native="true"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="NewFile"/>
+    <addaction name="OpenFile"/>
+    <addaction name="SaveFile"/>
+    <addaction name="separator"/>
+    <addaction name="action_4"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>主题</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>导出</string>
+    </property>
+    <addaction name="export_html"/>
+    <addaction name="export_pdf"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="OpenFile">
+   <property name="text">
+    <string>打开文件 &amp;Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="SaveFile">
+   <property name="text">
+    <string>保存文件 &amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>退出 &amp;Exit</string>
+   </property>
+  </action>
+  <action name="export_html">
+   <property name="text">
+    <string>导出html</string>
+   </property>
+  </action>
+  <action name="NewFile">
+   <property name="text">
+    <string>新建文件 &amp;New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="export_pdf">
+   <property name="text">
+    <string>导出pdf</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
