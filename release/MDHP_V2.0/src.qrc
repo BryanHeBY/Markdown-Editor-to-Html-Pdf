@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/themes">
+        <file>default.theme</file>
+        <file>ancient-book.theme</file>
+    </qresource>
+    <qresource prefix="/icon">
+        <file>MDHP.png</file>
+    </qresource>
+    <qresource prefix="/config">
+        <file>user_define.txt</file>
+    </qresource>
+</RCC>

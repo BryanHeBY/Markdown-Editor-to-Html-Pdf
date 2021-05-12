@@ -1,0 +1,43 @@
+<link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
+<script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+    html{
+        padding:64px 80px;
+    }
+    .qblock{
+        padding:8px 6px 8px 10px;
+        background-color:#eee;
+        border-left:8px #bbb solid;
+    }
+    table{
+        border-collapse: collapse;
+        box-sizing: border-box;
+    }
+    thead tr{
+        background:#ddd;
+    }
+    tbody tr:nth-child(odd){
+        background:#fff;
+    }
+    tbody tr:nth-child(even){
+        background:#eee;
+    }
+    th{
+        border: 1px solid black;
+    }
+    td{
+        border: 1px solid black;
+    }
+    h1, h2{
+        border-bottom: 1px solid #ddd;
+    }
+    code{
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    a:hover{
+        border-radius:6px;
+        background-color:rgba(0,255,255,0.6);
+    }
+</style>

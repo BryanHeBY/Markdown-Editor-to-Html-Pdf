@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1230</width>
+    <height>789</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="src.qrc">
+    <normaloff>:/icon/MDHP.png</normaloff>:/icon/MDHP.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTextEdit{
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+      <item>
+       <widget class="QTextEdit" name="md_text">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="web_widget" native="true"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1230</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="NewFile"/>
+    <addaction name="OpenFile"/>
+    <addaction name="SaveFile"/>
+    <addaction name="separator"/>
+    <addaction name="Exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>主题(&amp;T)</string>
+    </property>
+    <addaction name="set_theme"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>导出(&amp;O)</string>
+    </property>
+    <addaction name="export_html"/>
+    <addaction name="export_pdf"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>预览(&amp;V)</string>
+    </property>
+    <addaction name="handy_to_webview"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="undo"/>
+    <addaction name="redo"/>
+    <addaction name="separator"/>
+    <addaction name="set_font"/>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="open_help"/>
+   </widget>
+   <widget class="QMenu" name="menu_M">
+    <property name="title">
+     <string>工具(&amp;M)</string>
+    </property>
+    <addaction name="set_user_define"/>
+    <addaction name="reload_user_define"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_M"/>
+   <addaction name="menu_H"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="OpenFile">
+   <property name="text">
+    <string>打开文件 &amp;Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="SaveFile">
+   <property name="text">
+    <string>保存文件 &amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="Exit">
+   <property name="text">
+    <string>退出 &amp;Exit</string>
+   </property>
+  </action>
+  <action name="export_html">
+   <property name="text">
+    <string>导出html(&amp;H)</string>
+   </property>
+  </action>
+  <action name="NewFile">
+   <property name="text">
+    <string>新建文件 &amp;New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="export_pdf">
+   <property name="text">
+    <string>导出pdf(&amp;P)</string>
+   </property>
+  </action>
+  <action name="handy_to_webview">
+   <property name="text">
+    <string>手动加载到预览框(&amp;H)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="redo">
+   <property name="text">
+    <string>重做(&amp;R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z, Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="undo">
+   <property name="text">
+    <string>撤销(&amp;U)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="open_help">
+   <property name="text">
+    <string>打开帮助文档</string>
+   </property>
+  </action>
+  <action name="set_font">
+   <property name="text">
+    <string>设置编辑框字体(&amp;S)</string>
+   </property>
+  </action>
+  <action name="set_theme">
+   <property name="text">
+    <string>更换主题(&amp;S)</string>
+   </property>
+  </action>
+  <action name="set_user_define">
+   <property name="text">
+    <string>修改自定义替换语法(&amp;S)</string>
+   </property>
+  </action>
+  <action name="reload_user_define">
+   <property name="text">
+    <string>重新载入自定义替换语法(&amp;R)</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="src.qrc"/>
+ </resources>
+ <connections/>
+</ui>

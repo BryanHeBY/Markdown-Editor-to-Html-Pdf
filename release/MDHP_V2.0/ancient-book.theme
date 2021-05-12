@@ -1,0 +1,53 @@
+<link href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/solarized-light.min.css" rel="stylesheet">
+<script src="http://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+    html{
+        padding:64px 80px;
+        background-color:#FFDDBB;
+    }
+    .qblock{
+        padding:8px 6px 8px 10px;
+        background-color:#fec;
+        border-left:8px #da8 solid;
+    }
+    table{
+        border-collapse: collapse;
+        box-sizing: border-box;
+    }
+    thead tr{
+        background:#da8;
+    }
+    tbody tr:nth-child(odd){
+        background:#fec;
+    }
+    tbody tr:nth-child(even){
+        background:#ffdfaf;
+    }
+    th{
+        border: 1px solid black;
+    }
+    td{
+        border: 1px solid black;
+    }
+    HR{
+        height:2px;
+        border:none;
+        background:#e97;
+    }
+    h1, h2{
+        border-bottom: 1px solid #da8;
+    }
+    code{
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    a{
+        color:#741;
+    }
+    a:hover{
+        color:#741;
+        border-radius:6px;
+        background-color:rgba(244,198,145,0.8);
+    }
+</style>
