@@ -1,16 +1,20 @@
-# M↓Editor&2&lt;H&gt;P V1.0 --- 用户手册
-Authored by: H_Bryan
+# <img src="./MDHP.png" width="70px">&nbsp;M↓Editor&amp;2&lt;H&gt;P V1.0 --- 用户手册
+# Authored by: H_Bryan
 ---
-
+ 
 ## 一、使用前环境配置说明
 1. 程序打开方式: 
-	- windows: 打开md_editor.exe
-	- linux: 在终端中cd到程序文件夹下，输入`./md_editor`
+ - windows: 打开MDHP.exe
+ - linux: 在终端中cd到程序文件夹下，输入`./MDHP`
 2. 功能使用扩展依赖:
-	- 离线转PDF功能: 需要 [wkhtmltopdf离线环境](https://wkhtmltopdf.org/)<br>安装方式:<br>Windows: 官网下载<br>Debian系: `sudo apt install wkhtmltopdf`<br>Red Hat/Centos: `sudo yum install wkhtmltopdf`
+ - 离线转PDF功能: 需要 [wkhtmltopdf离线环境](https://wkhtmltopdf.org/)<br>
+	安装方式:<br>
+	Windows: 程序自带<br>
+	Debian系: `sudo apt install wkhtmltopdf`<br>
+	Red Hat/Centos: `sudo yum install wkhtmltopdf`
 
 ## 二、支持语法功能
-
+ 
 > 1.**标题**
 > ```
 > # 一号标题
@@ -28,7 +32,7 @@ Authored by: H_Bryan
 > ##### 五号标题
 > ###### 六号标题
 <br>
-
+ 
 > 2.**字体**
 > ```
 > *斜体* **加粗** ***斜体加粗*** ~~删除~~
@@ -36,7 +40,7 @@ Authored by: H_Bryan
 > 效果：
 > *斜体* **加粗** ***斜体加粗*** ~~删除~~
 <br>
-
+ 
 > 3.**列表及列表嵌套**
 > ```
 > * 第一层列表
@@ -52,7 +56,7 @@ Authored by: H_Bryan
 >   2. 第二个
 > * 第一层列表的第二个
 <br>
-
+ 
 > 3.**区块**
 > ```
 > > 区块
@@ -71,8 +75,9 @@ Authored by: H_Bryan
 > >  2. 第二项
 > >  区块二末尾
 > > >  区块三
+> 提示：多个区块连在一起需要用单行换行符&lt;br&gt;分割
 <br>
-
+ 
 > 4.**代码块**
 > ```
 > 这里是`pip install numpy`的代码块
@@ -100,7 +105,7 @@ Authored by: H_Bryan
 > }
 > ```
 <br>
-
+ 
 > 5.**Latex公式**
 > ```
 > 这是单行数学公式: $\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$
@@ -124,7 +129,7 @@ Authored by: H_Bryan
 > {a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}}\\
 > \end{bmatrix}$$
 <br>
-
+ 
 > 6.**超链接与图片**
 > ```
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
@@ -134,60 +139,89 @@ Authored by: H_Bryan
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
 > 这是罗马国旗图片![这是罗马国旗](./Roman.jpeg)
 <br>
-
-> ~~7.**表格**(暂不支持)~~
+ 
+> 7.**表格**
+> ```
+> |表头1|表头2|表头3|
+> |------:|:----:|:----|
+> |1|2|3|
+> |4|5|6|
+> |7|8|9|
+> |10|11|12|
+> |13|14|15|
+> ```
+> |表头1|表头2|表头3|
+> |------:|:----:|:----|
+> |1|2|3|
+> |4|5|6|
+> |7|8|9|
+> |10|11|12|
+> |13|14|15|
 <br>
-
+ 
 > 8.原生html代码以及语法混用
 > ```
 > <!--我是html原生的注释，下面是html的原生语法-->
-> 换行<br><br><br><br><br>
-> 空&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格
+> 换行<br><br><br><br><br> 
+> 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
 > <center><img alt="罗马国旗" src="./Roman.jpeg" style="width:300px;"></center>
 > ```
 > 效果
 > <!--我是html原生的注释，下面是html的原生语法-->
-> 换行<br><br><br><br><br>
-> 空&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格
+> 换行<br><br><br><br><br> 
+> 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
 > <center><img alt="罗马国旗" src="./Roman.jpeg" style="width:300px;"></center>
 <br>
+ 
 
-
-> 9.**作者自创语法**~~(后期将加入用户自定义html替换语法功能)~~:
+> 9.**分割线**
 > ```
-> #[m](这里可以**居中**)
-> #[r](这里可以右**对齐**~)
+> ---
 > ```
 > 效果
-> #[m](这里可以**居中**)
-> #[r](这里可以右**对齐**~)
+> ---
 <br>
+ 
+> 10.**用户自定义替换语法，为高级用户提供语法拓展功能**
+>  详情请打开用户自定义语法展示文件，查看程序自带拓展语法
+<br>
+ 
 
-> 10.**分割线**
-> ```
-> ---
-> ```
-> 效果
-> ---
-
-## 三、拓展功能
-1. 输出html: 导出 -> 导出html
-2. (本地)输出pdf: 导出 -> 导出pdf
-3. ~~(未来上线)在线导出pdf: 导出 -> 在线导出pdf~~
-4. ~~(未来上线)修改文本框字体字号背景~~
-5. ~~(未来上线)切换主题: 计划推出: default, good_night(夜间模式), ancient_book, bright_blue 等主题~~
-6. ~~(未来上线)自动缩进(自动添加区块">"符号)~~
-7. ~~(未来上线)未保存文件时，关闭窗口自动提示~~
-8. ~~(未来上线)更换程序名称，程序图标~~
-9. ~~(未来上线)添加更多快捷键: 参照JetBrians套件, 等IDE的快捷键~~
-10. ~~(未来上线)多标签页显示~~
-11. ~~(未来上线)程序与markdown文件(.md,.markdown)关联~~
-
+ 
+## 三、程序功能
+1. 文件操作(F)
+	- 新建文件（有当前文件未保存提醒）
+	- 打开文件（有当前文件未保存提醒）
+	- 保存文件
+	- 退出（有当前文件未保存提醒）
+2. 编辑(E)
+	- 撤销\重做
+	- 提供markdown文本框字体与大小调整功能
+3. 主题(T)
+	- 主题更换，现在提供如下主题
+		- 默认主题 default.theme
+		- 小古书主题 ancient-book.theme
+		- ~~计划推出: good_night(夜间模式), bright_blue, github 等主题~~
+4. 导出(O)
+		- 导出html (导出的html是单文件(除了图片资源) )
+		- 导出pdf
+5. 预览(V) 
+	- 回车自动刷新预览
+	- ctrl+H手动刷新预览
+6. 工具(M)
+	- 修改自定义替换语法 (修改窗口关闭自动保存并自动导入)
+	- 重新载入自定义语法
+7. 帮助(M)
+	- 打开帮助文档
+8. 打开(*.md)文件
+	- linux: 可以将要打开的文件作为参数
+	- windows: 直接用**MDPH.exe**程序打开
+9. ~~(未来上线)windows安装包，程序与markdown文件(.md,.markdown)关联~~
+ 
 ## 四、程序说明以及附录
-1. 本说明文档的pdf版本以及html版本是由本程序生成 ~~允许套娃(x~~
-2. 程序使用的外部扩展库
+1. 程序使用的外部扩展库
 	- [highlight.js](https://highlightjs.org/) --- 语法高亮渲染库
 	- [latex.codecogs](http://latex.codecogs.com/) --- 在线生成latex公式图片
 	- [wkhtmltopdf](https://wkhtmltopdf.org/) --- html转pdf工具
