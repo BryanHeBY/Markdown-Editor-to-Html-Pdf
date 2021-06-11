@@ -12,18 +12,21 @@ SOURCES += \
     changemdtextfontwindow.cpp \
     changeuserdefinefile.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    postpage.cpp
 
 HEADERS += \
     changemdtextfontwindow.h \
     changeuserdefinefile.h \
     mainwindow.h \
+    postpage.h \
     translator.h
 
 FORMS += \
     changemdtextfontwindow.ui \
     changeuserdefinefile.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    postpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

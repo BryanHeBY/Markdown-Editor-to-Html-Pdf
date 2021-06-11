@@ -24,7 +24,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout" stretch="1">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+     <layout class="QHBoxLayout" name="hlayout" stretch="1">
       <item>
        <widget class="QTextEdit" name="md_text">
         <property name="font">
@@ -33,9 +33,6 @@
          </font>
         </property>
        </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="web_widget" native="true"/>
       </item>
      </layout>
     </item>
@@ -54,9 +51,20 @@
     <property name="title">
      <string>文件(&amp;F)</string>
     </property>
+    <widget class="QMenu" name="recent_files">
+     <property name="title">
+      <string>最近使用文件 &amp;Recent</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
     <addaction name="NewFile"/>
     <addaction name="OpenFile"/>
     <addaction name="SaveFile"/>
+    <addaction name="SaveAsFile"/>
+    <addaction name="separator"/>
+    <addaction name="recent_files"/>
+    <addaction name="separator"/>
+    <addaction name="new_Win"/>
     <addaction name="separator"/>
     <addaction name="Exit"/>
    </widget>
@@ -72,12 +80,24 @@
     </property>
     <addaction name="export_html"/>
     <addaction name="export_pdf"/>
+    <addaction name="export_link"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
      <string>预览(&amp;V)</string>
     </property>
+    <widget class="QMenu" name="menu_S">
+     <property name="title">
+      <string>设置编辑预览宽度比(&amp;S)</string>
+     </property>
+     <addaction name="V11"/>
+     <addaction name="V10"/>
+     <addaction name="V01"/>
+     <addaction name="V21"/>
+     <addaction name="V31"/>
+    </widget>
     <addaction name="handy_to_webview"/>
+    <addaction name="menu_S"/>
    </widget>
    <widget class="QMenu" name="menu_5">
     <property name="title">
@@ -196,6 +216,63 @@
   <action name="reload_user_define">
    <property name="text">
     <string>重新载入自定义替换语法(&amp;R)</string>
+   </property>
+  </action>
+  <action name="new_Win">
+   <property name="text">
+    <string>新建窗口 new &amp;Win</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="replace_original_text">
+   <property name="text">
+    <string>使用自定义替换更新原文本</string>
+   </property>
+  </action>
+  <action name="V11">
+   <property name="text">
+    <string>1:1</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+K</string>
+   </property>
+  </action>
+  <action name="V10">
+   <property name="text">
+    <string>1:0</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
+   </property>
+  </action>
+  <action name="V01">
+   <property name="text">
+    <string>0:1</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+J</string>
+   </property>
+  </action>
+  <action name="V21">
+   <property name="text">
+    <string>2:1</string>
+   </property>
+  </action>
+  <action name="V31">
+   <property name="text">
+    <string>3:1</string>
+   </property>
+  </action>
+  <action name="SaveAsFile">
+   <property name="text">
+    <string>另存为 Save &amp;AS</string>
+   </property>
+  </action>
+  <action name="export_link">
+   <property name="text">
+    <string>导出在线链接(&amp;L)</string>
    </property>
   </action>
  </widget>

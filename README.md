@@ -1,5 +1,5 @@
-# <img src="./MDHP.png" width="70px">&nbsp;M↓Editor&amp;2&lt;H&gt;P V1.0 --- 用户手册
-# Authored by: H_Bryan
+# #C(<img src="./MDHP.png" width="70px">&nbsp;M↓Editor&amp;2&lt;H&gt;P V1.0 --- 用户手册)
+# #R(Authored by: H_Bryan)
 ---
  
 ## 一、使用前环境配置说明
@@ -133,11 +133,11 @@
 > 6.**超链接与图片**
 > ```
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
-> 这是罗马国旗图片![这是罗马国旗](./Roman.jpeg)
+> 这是NJU校徽![NJU](https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto)
 > ```
 > 效果
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
-> 这是罗马国旗图片![这是罗马国旗](./Roman.jpeg)
+> 这是NJU校徽![NJU](https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto)
 <br>
  
 > 7.**表格**
@@ -165,14 +165,14 @@
 > 换行<br><br><br><br><br> 
 > 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
-> <center><img alt="罗马国旗" src="./Roman.jpeg" style="width:300px;"></center>
+> <center><img alt="NJU" src="https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto" style="width:300px;"></center>
 > ```
 > 效果
 > <!--我是html原生的注释，下面是html的原生语法-->
 > 换行<br><br><br><br><br> 
 > 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
-> <center><img alt="罗马国旗" src="./Roman.jpeg" style="width:300px;"></center>
+> <center><img alt="NJU" src="https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto" style="width:300px;"></center>
 <br>
  
 
@@ -195,6 +195,9 @@
 	- 新建文件（有当前文件未保存提醒）
 	- 打开文件（有当前文件未保存提醒）
 	- 保存文件
+	- 另存为
+	- 最近使用文件列表，快速打开markdown文件
+		- 可清空最近文件列表
 	- 退出（有当前文件未保存提醒）
 2. 编辑(E)
 	- 撤销\重做
@@ -203,25 +206,30 @@
 	- 主题更换，现在提供如下主题
 		- 默认主题 default.theme
 		- 小古书主题 ancient-book.theme
-		- ~~计划推出: good_night(夜间模式), bright_blue, github 等主题~~
 4. 导出(O)
-		- 导出html (导出的html是单文件(除了图片资源) )
-		- 导出pdf
+	- 导出html (导出的html是单文件(除了图片资源) )
+	- 导出pdf
+	- 导出可分享的在线链接
+		- 链接可点击复制、分享查看
 5. 预览(V) 
 	- 回车自动刷新预览
 	- ctrl+H手动刷新预览
+	- 调整编辑框和预览框大小比例(提供快捷键)
+		- 提供以下编辑:预览比例: 1:1 1:0 0:1 2:1 3:1
 6. 工具(M)
-	- 修改自定义替换语法 (修改窗口关闭自动保存并自动导入)
+	- 修改自定义替换语法 (修改窗口关闭自动保存并自动导入，带有正则合法性检查)
 	- 重新载入自定义语法
 7. 帮助(M)
 	- 打开帮助文档
 8. 打开(*.md)文件
-	- linux: 可以将要打开的文件作为参数
-	- windows: 直接用**MDPH.exe**程序打开
-9. ~~(未来上线)windows安装包，程序与markdown文件(.md,.markdown)关联~~
+	- linux: 可在终端命令后加上文件路径，即可打开文件
+	- windows: 直接用**MDPH.exe**程序打开，或拖动文件到MDPH.exe程序上
  
 ## 四、程序说明以及附录
 1. 程序使用的外部扩展库
 	- [highlight.js](https://highlightjs.org/) --- 语法高亮渲染库
 	- [latex.codecogs](http://latex.codecogs.com/) --- 在线生成latex公式图片
 	- [wkhtmltopdf](https://wkhtmltopdf.org/) --- html转pdf工具
+
+## 五、更多信息请关注github本项目网站
+链接: [https://github.com/BryanHeBY/Markdown-Editor-to-Html-Pdf](https://github.com/BryanHeBY/Markdown-Editor-to-Html-Pdf)

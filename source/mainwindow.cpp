@@ -5,9 +5,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProcess>
-#include<QKeyEvent>
+#include <QKeyEvent>
 #include "changemdtextfontwindow.h"
 #include "changeuserdefinefile.h"
+#include "postpage.h"
 
 int MainWindow::tabStop=4;
 
@@ -17,22 +18,38 @@ MainWindow::MainWindow(QWidget *parent,QString open_file)
     , ui(new Ui::MainWindow)
     ,now_file_info(QCoreApplication::applicationDirPath())
     ,now_theme(getDefaultTheme())
+    ,evwidth({1,1})
 {
     ui->setupUi(this);
-    web_view = new QWebEngineView(ui->web_widget);
-    QHBoxLayout *boxLayout=new QHBoxLayout();
-    boxLayout->addWidget(web_view);
-    ui->web_widget->setLayout(boxLayout);
+    web_view = new QWebEngineView(this);
+    //QHBoxLayout *boxLayout=new QHBoxLayout();
+    //boxLayout->addWidget(web_view);
+    ui->hlayout->addWidget(web_view);
+    reload_evwidth();
+
+    read_recent_file();
+    add_recent_file_to_menu();
+
     QFont font;
     QFontMetrics metrics(font);
     ui->md_text->setTabStopWidth(tabStop * metrics.width(' '));
     ui->md_text->setAcceptRichText(false);
 
+    connect(ui->V11,&QAction::triggered,this,[=](){set_evwidth({1,1});});
+    connect(ui->V10,&QAction::triggered,this,[=](){set_evwidth({1,0});});
+    connect(ui->V01,&QAction::triggered,this,[=](){set_evwidth({0,1});});
+    connect(ui->V21,&QAction::triggered,this,[=](){set_evwidth({2,1});});
+    connect(ui->V31,&QAction::triggered,this,[=](){set_evwidth({3,1});});
+
+    connect(ui->export_link,&QAction::triggered,this,[=](){(new PostPage(NULL,getHtml(ui->md_text->toPlainText(),now_file_info.baseName(),now_theme)))->show();});
+
+    connect(ui->new_Win,&QAction::triggered,this,[](){(new MainWindow(NULL,QString()))->show();});
     connect(ui->export_html,&QAction::triggered,this,&MainWindow::exportHtml);
     connect(ui->export_pdf,&QAction::triggered,this,&MainWindow::exportPdf);
     connect(ui->NewFile,&QAction::triggered,this,&MainWindow::newMdFile);
     connect(ui->OpenFile,&QAction::triggered,this,&MainWindow::openMdFile);
     connect(ui->SaveFile,&QAction::triggered,this,&MainWindow::saveMdFile);
+    connect(ui->SaveAsFile,&QAction::triggered,this,&MainWindow::saveAsFile);
     connect(ui->Exit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->handy_to_webview,&QAction::triggered,this,&MainWindow::textToWebView);
     connect(ui->undo,&QAction::triggered,ui->md_text,&QTextEdit::undo);
@@ -46,13 +63,14 @@ MainWindow::MainWindow(QWidget *parent,QString open_file)
     updateTitle();
     ui->md_text->installEventFilter(this);
 
+
     this->setAttribute(Qt::WA_DeleteOnClose);
 
     load_user_define();
     if(open_file.isEmpty())return;
     QFile new_md_file(open_file);
     if(!new_md_file.open(QFile::ReadOnly | QFile::Text)){
-        QMessageBox::warning(this,tr("Error"),tr("save file error: &1").arg(new_md_file.errorString()));
+        QMessageBox::warning(this,tr("Error"),tr("Open file not found"));
         return;
     }
     loadNewFile(open_file);
@@ -61,6 +79,7 @@ MainWindow::MainWindow(QWidget *parent,QString open_file)
     textToWebView();
     file_changed=0;
     updateTitle();
+    add_recent_file(open_file);
 }
 
 MainWindow::~MainWindow()
@@ -98,8 +117,9 @@ void MainWindow::closeEvent ( QCloseEvent * e )
         e->accept();
     }
     else
-      e->ignore();
+        e->ignore();
 }
+
 
 void MainWindow::loadNewFile(QString filename)
 {
@@ -142,7 +162,7 @@ void MainWindow::newMdFile()
     if(!filename.isNull()){
         QFile new_file(filename);
         if(!new_file.open(QFile::WriteOnly|QFile::Text)){
-            QMessageBox::warning(this,tr("Error"),tr("save file error: &1").arg(new_file.errorString()));
+            QMessageBox::warning(this,tr("Error"),tr("save file error: %1").arg(new_file.errorString()));
             return;
         }
         loadNewFile(filename);
@@ -151,6 +171,7 @@ void MainWindow::newMdFile()
         textToWebView();
         file_changed=0;
         updateTitle();
+        add_recent_file(filename);
     }
 }
 
@@ -170,7 +191,7 @@ void MainWindow::openMdFile()
     if(!filename.isNull()){
         QFile md_file(filename);
         if(!md_file.open(QFile::ReadOnly | QFile::Text)){
-            QMessageBox::warning(this,tr("Error"),tr("save file error: &1").arg(md_file.errorString()));
+            QMessageBox::warning(this,tr("Error"),tr("save file error: %1").arg(md_file.errorString()));
             return;
         }
         loadNewFile(filename);
@@ -179,6 +200,7 @@ void MainWindow::openMdFile()
         textToWebView();
         file_changed=0;
         updateTitle();
+        add_recent_file(filename);
     }
 }
 
@@ -191,18 +213,37 @@ bool MainWindow::saveMdFile()
     if(!filename.isNull()){
         QFile html_file(filename);
         if(!html_file.open(QFile::WriteOnly|QFile::Text)){
-            QMessageBox::warning(this,tr("Error"),tr("save file error: &1").arg(html_file.errorString()));
+            QMessageBox::warning(this,tr("Error"),tr("save file error: %1").arg(html_file.errorString()));
             return 0;
         }
         if(newfile)loadNewFile(filename);
         file_changed=0;
         updateTitle();
         html_file.write(ui->md_text->toPlainText().toUtf8());
+        add_recent_file(filename);
         return 1;
     }
     return 0;
 }
 
+bool MainWindow::saveAsFile()
+{
+    QString filename(QFileDialog::getSaveFileName(nullptr,QString(),QString(),"markdown(*.md)"));
+    if(!filename.isNull()){
+        QFile html_file(filename);
+        if(!html_file.open(QFile::WriteOnly|QFile::Text)){
+            QMessageBox::warning(this,tr("Error"),tr("save file error: %1").arg(html_file.errorString()));
+            return 0;
+        }
+        loadNewFile(filename);
+        file_changed=0;
+        updateTitle();
+        html_file.write(ui->md_text->toPlainText().toUtf8());
+        add_recent_file(filename);
+        return 1;
+    }
+    return 0;
+}
 
 void MainWindow::exportHtml()
 {
@@ -210,7 +251,7 @@ void MainWindow::exportHtml()
     if(!filename.isNull()){
         QFile html_file(filename);
         if(!html_file.open(QFile::WriteOnly|QFile::Text)){
-            QMessageBox::warning(this,tr("Error"),tr("save file error: &1").arg(html_file.errorString()));
+            QMessageBox::warning(this,tr("Error"),tr("save file error: %1").arg(html_file.errorString()));
             return;
         }
         html_file.write(getHtml(ui->md_text->toPlainText(),now_file_info.baseName(),now_theme).toUtf8());
@@ -272,7 +313,7 @@ void MainWindow::textToWebView()
     QFile tmp_html_file(now_file_info.absolutePath()+"/.tmp_html.html");
     tmp_html_file.open(QFile::WriteOnly|QFile::Text);
     tmp_html_file.write(getHtml(ui->md_text->toPlainText(),now_file_info.baseName(),now_theme).toUtf8());
-    web_view->setUrl(QUrl("file:///"+now_file_info.absolutePath()+"/.tmp_html.html"));
+    if(web_view)web_view->setUrl(QUrl("file:///"+now_file_info.absolutePath()+"/.tmp_html.html"));
     ui->md_text->setFocus();
 }
 
@@ -308,15 +349,90 @@ void MainWindow::set_theme()
     }
 }
 
-void MainWindow::load_user_define()
+bool MainWindow::load_user_define()
 {
     QFile file(QCoreApplication::applicationDirPath()+"/user_define.txt");
     file.open(QFile::ReadOnly | QFile::Text);
-    set_user_define(QString(file.readAll()));
+    if(set_user_define(QString(file.readAll())))return true;
     textToWebView();
+    return false;
 }
 
 void MainWindow::change_user_define(){(new ChangeUserDefineFile(NULL,QCoreApplication::applicationDirPath()+"/user_define.txt",this))->show();}
+
+void MainWindow::reload_evwidth(){
+    ui->hlayout->setStretch(0,evwidth.first);
+    ui->hlayout->setStretch(1,evwidth.second);
+}
+
+void MainWindow::set_evwidth(const QPair<int, int> &v)
+{
+    evwidth=v;
+    reload_evwidth();
+}
+
+
+
+void MainWindow::add_recent_file(const QString new_file)
+{
+    read_recent_file();
+    if(QFileInfo(new_file).isFile()){
+        for(auto i=recent_file_list.begin();i!=recent_file_list.end();){
+            if(*i==new_file)i=recent_file_list.erase(i);
+            else i++;
+        }
+        recent_file_list.push_front(new_file);
+        if(recent_file_list.size()>recent_file_list_num)recent_file_list.pop_back();
+    }
+    add_recent_file_to_menu();
+    write_recent_file();
+}
+
+void MainWindow::add_recent_file_to_menu()
+{
+    ui->recent_files->clear();
+    for(const QString &str:recent_file_list){
+        QAction *file_item=new QAction();
+        file_item->setText(str);
+        ui->recent_files->addAction(file_item);
+        connect(file_item,&QAction::triggered,this,[=](){(new MainWindow(NULL,str))->show();});
+    }
+    ui->recent_files->addSeparator();
+    QAction *clear_recent=new QAction();
+    clear_recent->setText("清空最近文件列表");
+    connect(clear_recent,&QAction::triggered,this,&MainWindow::clear_recent_file);
+    ui->recent_files->addAction(clear_recent);
+}
+
+void MainWindow::read_recent_file()
+{
+    recent_file_list.clear();
+    QFile file_list(QCoreApplication::applicationDirPath()+"/recent_file_list.txt");
+    if(file_list.open(QFile::ReadOnly|QFile::Text)){
+        QString str(file_list.readAll());
+        QStringList lines=str.split(QRegularExpression("\\r?\\n"));
+        for(const auto &line:lines)if(QFileInfo(line).isFile()){
+            recent_file_list.push_back(line);
+        }
+    }
+}
+
+void MainWindow::write_recent_file()
+{
+    QString str;
+    for(const auto &file:recent_file_list)str+=file+'\n';
+    QFile file_list_new(QCoreApplication::applicationDirPath()+"/recent_file_list.txt");
+    if(file_list_new.open(QFile::WriteOnly|QFile::Text)){
+        file_list_new.write(str.toUtf8());
+    }
+}
+
+void MainWindow::clear_recent_file()
+{
+    recent_file_list.clear();
+    add_recent_file_to_menu();
+    write_recent_file();
+}
 
 
 QString MainWindow::getDefaultTheme()

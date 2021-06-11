@@ -1,0 +1,7 @@
+"#[cC]\((.*?)\)"="<div style="text-align:center">\1</div>";
+"#[rR]\((.*?)\)"="<div style="text-align:right">\1</div>";
+"<[cC]>"="<div style="text-align:center">";
+"</[cC]>"="</div>";
+"<[rR]>"="<div style="text-align:center">";
+"</[rR]>"="</div>";
+"#u\((.*?)\)"="<u>\1</u>";

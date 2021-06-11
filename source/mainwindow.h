@@ -23,6 +23,7 @@ public:
     void newMdFile();
     void openMdFile();
     bool saveMdFile();
+    bool saveAsFile();
     void exportHtml();
     void exportPdf();
     void textToWebView();
@@ -30,8 +31,16 @@ public:
     void openHelp();
     void set_font();
     void set_theme();
-    void load_user_define();
+    bool load_user_define();
     void change_user_define();
+    void reload_evwidth();
+    void set_evwidth(const QPair<int,int> &v);
+    void add_recent_file(const QString new_file);
+    void add_recent_file_to_menu();
+    void read_recent_file();
+    void write_recent_file();
+    void clear_recent_file();
+    void change_original_text();
     static QString getDefaultTheme();
     bool eventFilter(QObject *target, QEvent *event);
     void closeEvent ( QCloseEvent * e );
@@ -42,5 +51,8 @@ private:
     QWebEngineView *web_view;
     QFileInfo now_file_info;
     QString now_theme;
+    QPair<int,int> evwidth;
+    const int recent_file_list_num=8;
+    QList<QString> recent_file_list;
 };
 #endif // MAINWINDOW_H

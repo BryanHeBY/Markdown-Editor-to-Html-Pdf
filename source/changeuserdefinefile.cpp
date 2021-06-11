@@ -26,6 +26,6 @@ void ChangeUserDefineFile::closeEvent ( QCloseEvent * e )
     file.open(QFile::WriteOnly|QFile::Text);
     file.write(ui->UserDefineText->toPlainText().toUtf8());
     file.close();
-    _parent->load_user_define();
-    e->accept();
+    if(_parent->load_user_define())e->ignore();
+    else e->accept();
 }

@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
+#include <QMessageBox>
 
 using namespace std;
 QString translation(QString &text,int indent_num=0);
@@ -55,7 +56,8 @@ QVector<QPair<QRegularExpression,QString>> UserDefineReplaceBlock;
 QVector<QPair<QRegularExpression,QString>> UserDefineReplaceInline;
 QRegularExpression user_define_block_sentence("^B:\\s+\"(.*)\"=>\"(.*)\";$");
 QRegularExpression user_define_inline_sentence("^I:\\s+\"(.*)\"=>\"(.*)\";$");
-void set_user_define(QString UserDefine){
+bool set_user_define(QString UserDefine){
+    bool has_error=0;
     UserDefineReplaceBlock.clear();
     UserDefineReplaceInline.clear();
     QStringList lines=UserDefine.split(QRegularExpression("\\r?\\n"));
@@ -63,13 +65,18 @@ void set_user_define(QString UserDefine){
     for(const QString &line:lines){
         match=user_define_block_sentence.match(line);
         if(match.hasMatch()){
-            UserDefineReplaceBlock.push_back(qMakePair(QRegularExpression(match.captured(1)),match.captured(2)));
+            QRegularExpression reg(match.captured(1));
+            if(!reg.isValid())QMessageBox::warning(NULL,QString("Error"),QString("RegularExpresion error: %1").arg(match.captured(1))),has_error=1;
+            else UserDefineReplaceBlock.push_back(qMakePair(reg,match.captured(2)));
         }
         match=user_define_inline_sentence.match(line);
         if(match.hasMatch()){
-            UserDefineReplaceInline.push_back(qMakePair(QRegularExpression(match.captured(1)),match.captured(2)));
+            QRegularExpression reg(match.captured(1));
+            if(!reg.isValid())QMessageBox::warning(NULL,QString("Error"),QString("RegularExpresion error: %1").arg(match.captured(1))),has_error=1;
+            else UserDefineReplaceInline.push_back(qMakePair(reg,match.captured(2)));
         }
     }
+    return has_error;
 }
 
 QString get_td_align(const QVector<QString> &td_align,int td_num){
