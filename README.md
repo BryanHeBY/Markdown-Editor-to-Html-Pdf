@@ -1,5 +1,5 @@
-# #C(<img src="./MDHP.png" width="70px">&nbsp;M↓Editor&amp;2&lt;H&gt;P V1.0 --- 用户手册)
-# #R(Authored by: H_Bryan)
+# <img src="./MDHP.png" width="70px">&nbsp;M↓Editor&amp;2&lt;H&gt;P V1.0 --- 用户手册
+## Authored by: H_Bryan
 ---
  
 ## 一、使用前环境配置说明
@@ -133,11 +133,11 @@
 > 6.**超链接与图片**
 > ```
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
-> 这是NJU校徽![NJU](https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto)
+> 这是NJU校徽![NJU](NJU.jpeg)
 > ```
 > 效果
 > 这是我的pastebin的超链接: [http://hbryan.ltd/pastebin](http://hbryan.ltd/pastebin)
-> 这是NJU校徽![NJU](https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto)
+> 这是NJU校徽![NJU](NJU.jpeg)
 <br>
  
 > 7.**表格**
@@ -165,14 +165,14 @@
 > 换行<br><br><br><br><br> 
 > 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
-> <center><img alt="NJU" src="https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto" style="width:300px;"></center>
+> <center><img alt="NJU" src="NJU.jpeg" style="width:300px;"></center>
 > ```
 > 效果
 > <!--我是html原生的注释，下面是html的原生语法-->
 > 换行<br><br><br><br><br> 
 > 空     格
 > <div style="text-align:center;">我是 *html* 原生的**居中**div</div>
-> <center><img alt="NJU" src="https://bkimg.cdn.bcebos.com/pic/2fdda3cc7cd98d103d73086f2c3fb80e7aec90cc?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5/format,f_auto" style="width:300px;"></center>
+> <center><img alt="NJU" src="NJU.jpeg" style="width:300px;"></center>
 <br>
  
 
